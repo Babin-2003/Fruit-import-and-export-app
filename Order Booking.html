@@ -1,0 +1,175 @@
+<html>
+<head>
+<title>order placement </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+ font-family: Arial, Helvetica, sans-serif;
+ background:url("apple2.jpg");
+ color:white; 
+ background-size: cover;
+40
+ background-position:left;
+}
+* {
+ box-sizing: border-box;
+}
+/* Style inputs */
+input[type=text], select, textarea {
+ width: 100%;
+ padding: 8px;
+ border: 1px solid #ccc;
+ margin-top: 10px;
+ margin-bottom: 10px;
+ resize: vertical;
+}
+input[type=radio], {
+ width: 100%;
+ 
+ padding: 8px;
+ border: 1px solid #ccc;
+ margin-top: 4px;
+ margin-bottom: 1px;
+ resize: vertical;
+}
+input[type=submit] {
+41
+ background-color:chartreuse;
+ color: black;
+ padding: 12px 20px;
+ border: none;
+ cursor: pointer;
+}
+input[type=submit]:hover {
+ background-color: #45a049;
+}
+input[type=reset] {
+ background-color:chartreuse;
+ color: black;
+ padding: 12px 20px;
+ border: none;
+ cursor: pointer;
+}
+input[type=reset]:hover {
+ background-color: #45a049;
+}
+.container {
+ border-radius: 10px;
+ background:rgba(0,0,0,0.5);
+ background-size:900px;
+ margin-left:450; 
+ width:500;
+ margin-top:50;
+42
+ margin-bottom:200;
+ height:770;
+ padding: 30px;
+}
+.column {
+ float: center;
+ width: 90%;
+ margin-top:2px;
+ padding: 8px;
+}
+/* Clear floats after the columns */
+.row:after {
+ content: "";
+ display: table;
+ clear: both;
+}
+/* Responsive layout - when the screen is less than 600px wide, make the two columns 
+stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+ .column, input[type=submit] {
+ width: 100%;
+ margin-top: 0;
+ }
+ .column, input[type=reset] {
+ width: 100;
+ margin-left:10;
+ margin-right:0;
+ margin-top: 2;
+43
+ }
+}
+</style>
+</head>
+<body>
+ <div class="container">
+ <div style="text-align:center">
+ <h1>Order Now</h1>
+ <p>select your product for order </p>
+ </div>
+ <div class="row">
+ <div class="column">
+ <form action="/action_page.php"method="post">
+ <label for="fname">First Name</label>
+ <input type="text" id="fname" name="firstname" placeholder="Your name..">
+ <label for="lname">Last Name</label>
+ <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+ <label for="phno">Phone Number</label>
+ <input type="text" id="phno" name="phonenumber" placeholder="Your number..">
+ <label for="email">Email Id</label>
+ <input type="text" id="email" name="email" placeholder="Your mail id..">
+ <label for="Items">Items</label>
+ <select id="Items" name="Items">
+ <option value="apple">Apple</option>
+ <option value="banana">Banana</option>
+ <option value="orange">Orange</option>
+ <option value="papaya">Papaya</option>
+ <option value="pineapple">Pine apple</option>
+44
+ </select>
+ <input type="radio" id="a1" name="quality" value="a1">
+ <label for="a1">First quality</label><br>
+ <input type="radio" id="a2" name="quality" value="a2">
+ <label for="a2">Second quality</label><br>
+ <input type="radio" id="a3" name="quality" value="a3">
+ <label for="a3">Third quality</label><br>
+ 
+ <label for="quantity">Quantity</label><br>
+ <input type="text" id="quantity" name="quantity" placeholder="how much do you 
+want (eg.,5kg)">
+ <input type="submit" value="Submit">
+ <input type="reset" value="reset">
+ </div>
+ </div>
+ <h1></h1>
+</body></head></html>
+<?php
+$fname=($_POST['fname']);
+$lname=($_POST['lname']);
+$phno=($_POST['phno']);
+$email=($_POST['email']);
+$duedate=($_POST['duedate']);
+$apple=($_POST['apple']);
+$banana=($_POST['banana']);
+$orange=($_POST['orange']);
+45
+$papaya=($_POST['papaya']);
+$pineapple=($_POST['pineapple']);
+if(isset($_POST["submit"]))
+{
+$conn=mysqli_connect("localhost","root","","order_details");
+if(!$conn)
+{
+echo"Database is not connected";
+}
+$query="INSERT INTO `order_details`(`order_id`, `first_name`, `last_name`, 
+`phone_number`, `email_id`, `due_date`, `items`, `quality`, `quantity`) VALUES 
+([fname],[lname],[phno],[email],[duedate],[item],[quality],[quantity])";
+if(mysqli_query($conn,$query))
+{
+ echo"NEW RECORD CREATED SUCCESSFULLY ";
+ }
+else
+{
+ echo"Error:".$query."</br>".$conn->error;
+ 
+}
+}
+?>
+</html>
+</form>
+46
+</body></html>
